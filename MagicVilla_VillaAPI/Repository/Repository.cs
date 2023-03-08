@@ -10,7 +10,8 @@ namespace MagicVilla_VillaAPI.Repository
     {
 
         private readonly ApplicationDbContext _db;
-        internal DbSet<T> dbSet;
+        internal DbSet<T> dbSet;    //THIS ONE EXTRA HERE FOR GENERIC REPOSITORY, INJECT DB SET FOR 
+                                    // DB SET TO MAKE GENERIC 
         public  Repository(ApplicationDbContext db)
         {
             _db = db;
@@ -27,7 +28,6 @@ namespace MagicVilla_VillaAPI.Repository
 
             await dbSet.AddAsync(entity);
             await Save();
-
         }
 
         public async Task<T> GetById(Expression<Func<T, bool>> filter = null, bool tracked = true)
@@ -49,6 +49,7 @@ namespace MagicVilla_VillaAPI.Repository
             IQueryable<T> query = dbSet;
             if (filter != null)
             {
+                //I AM NOT CLEAR WHAT OURPOSES IT USES
                 query = query.Where(filter);
             }
             return await query.ToListAsync();

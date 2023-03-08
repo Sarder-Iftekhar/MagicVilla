@@ -11,7 +11,7 @@ namespace MagicVilla_VillaAPI.Models.Dto
         public string Name { get; set; }
   
         public string Details { get; set; }
-        [Required]
+        [Required] 
         public double Rate { get; set; }
         [Required]
         public int Sqft { get; set; }
